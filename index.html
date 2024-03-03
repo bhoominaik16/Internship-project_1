@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhoomi's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/e4343eeeba.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="images/logo.png" class="logo">
+                <ul id= "sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fas fa-solid fa-x" onclick="closemenu()"></i>
+                </ul>
+                <i class=" fas fa-solid fa-bars" onclick="openmenu()"></i>
+            </nav>
+            <div class="header-text">
+                <p>Student</p>
+                <h1>Welcome to <br> <span>Bhoomi's</span> Portfolio!!</h1>
+            </div>
+        </div>
+    </div>
+    <!-- -----------------about------------- -->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="images/img.png" >
+                </div>
+                <div class="about-col-2">
+                    <h1 class="subtitle" >About Me</h1>
+                    <p>Hello viewers! I am Bhoomi Naik, a student from Mumbai with a great academic performance. Looking forward to gain huge success as 
+                    an Software engineer, currently, I am enhancing my web development skills by increasing my knowledge about technologies like HTML, CSS and Javascript.</p>
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('skills')" >Skills</p>
+                        <p class="tab-links" onclick="opentab('education')">Education</p>
+                        <p class="tab-links" onclick="opentab('qualities')">Qualities</p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>Web Development</span><br>HTML <br>CSS <br>Javascript</li>
+                            <li><span>Languages</span><br>C <br>C++ <br>Java</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li><span>Education</span><br>Pursuing: Gradution in IT engineering<br>Completed: HSC</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="qualities">
+                        <ul>
+                            <li><span>Qualities</span><br>Leadership<br>Time Management <br>Creative Thinking <br> Focused</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------portfolio------------ -->
+    <div id="portfolio">
+        <div class="cointainer">
+            <h1 class="subtitle" >My Work</h1>
+            <div class="work-list">
+                <div>
+                    <h2>Projects</h2>
+                    <p>A Flight and Passenger management system made using JAVA.</p>
+                </div>
+                <div>
+                    <h2>Co-curricular Activities</h2>
+                    <p>J.A.R.V.I.S Workshop <br> 3D Printing Workshop <br> Linkedln Workshop</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- -------------contact--------- -->
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><h4>Feel free to reach me out</h4></p>
+                    <div class="social-icons">
+                        <a href="mailto:bhoominaik16@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i></a>
+                        <a href="https://www.linkedin.com/in/bhoomi-naik-4a84222a2/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="email" name="Email" placeholder="Your Email" required >
+                        <textarea name="Message" rows="7" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn" >Submit</button>
+                    </form>
+                    <span id="msg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright @Bhoomi. Made with <i class="fa-regular fa-gem"></i> by Daimond Works</p>
+        </div>
+    </div>
+  
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+        function opentab(tabname){
+            for(tablink of tablinks){
+                tablink.classList.remove("active-link");
+            }
+            for(tabcontent of tabcontents){
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+    </script>
+    <script>
+        var sidemenu = document.getElementById("sidemenu");
+        function openmenu() {
+            sidemenu.style.right = "0";
+        }
+        function closemenu() {
+            sidemenu.style.right = "-200px";
+        }
+    </script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwhDO-CzoNjhL_5-MpYx0kZmrUFOsugAtKfezXhsmpNWnvyZAwJxtLgg-iiVumqKXAl8Q/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = doc.getElementById("msg")
+      
+        form.addEventListener('submit', (e) => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML= "Message is sent successfully"
+                setTimeout(function(){
+                    msg.innerHTML = ""
+                },5000)
+                form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+</body>
+</html>
